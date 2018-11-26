@@ -13,5 +13,8 @@ before_install:
 script:
   - bundle exec rspec spec
 jobs:
+  exclude:
+    - rvm: '2.3.8'
+      gemfile: gemfiles/rails-master.gemfile
   allow_failures:
-    - gemfile: gemfiles/Gemfile.rails-master
+    - gemfile: gemfiles/rails-master.gemfile
