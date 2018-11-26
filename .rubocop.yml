@@ -1,0 +1,211 @@
+require:
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - 'bin/**'
+    - 'config/initializers/integration*'
+    - 'db/schema.rb'
+    - 'vendor/**'
+  TargetRubyVersion: 2.5
+  TargetRailsVersion: 5.2
+
+
+
+# -----------------------------------------------------------------------------
+#                                   RAILS
+
+Rails:
+  Enabled: true
+
+#
+# False positives:
+#   * On Acfs::Resource#update_attriubutes!
+#
+Rails/ActiveRecordAliases:
+  Exclude:
+    - spec/**/*_spec.rb
+
+#
+# False positives:
+#   * On embedded models in migrations.
+#
+Rails/ApplicationRecord:
+  Exclude:
+    - 'db/**/*'
+
+#
+# Often when triggered it just wants to pass joined paths as separate
+# arguments but that can hurt readability.
+#
+Rails/FilePath:
+  Enabled: false
+
+#
+# False positives:
+#   * Specs and migrations often need to update things without validations.
+#
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'db/migrations/**.rb'
+    - 'spec/**/*_spec.rb'
+
+
+
+# -----------------------------------------------------------------------------
+#                                   RSPEC
+
+RSpec:
+  Include:
+    - 'spec/**/*_spec.rb'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/ExpectInHook:
+  Enabled: false
+
+RSpec/FilePath:
+  Exclude:
+    - 'spec/client/**/*_spec.rb'
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/MissingExampleGroupArgument:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 5
+
+# -----------------------------------------------------------------------------
+#                                   Layout
+
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/CaseIndentation:
+  EnforcedStyle: end
+  SupportedStyles:
+    - case
+    - end
+  IndentOneStep: true
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/SpaceInsideBlockBraces:
+  EnforcedStyle: space
+  EnforcedStyleForEmptyBraces: no_space
+  SpaceBeforeBlockParameters: false
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+
+
+# -----------------------------------------------------------------------------
+#                                    Lint
+
+#
+# False positives:
+#   * expect { something }.to change { something } often triggers this
+#
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
+
+
+# -----------------------------------------------------------------------------
+#                                   Metrics
+
+Metrics/BlockLength:
+  Exclude:
+    - 'db/**/*'
+    - 'spec/**/*'
+    - 'config/**/*'
+    - '**/*.rake'
+
+Metrics/ClassLength:
+  Max: 200
+
+Metrics/LineLength:
+  Exclude:
+    - 'db/**/*'
+    - 'spec/**/*'
+    - 'config/**/*'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/**/*'
+
+
+
+# -----------------------------------------------------------------------------
+#                                   Style
+
+Style/BracesAroundHashParameters:
+  EnforcedStyle: context_dependent
+
+#
+# Both styles or mixtures are reasonable
+#
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+  Enabled: false
+
+#
+# Would be better but unlikely...
+#
+Style/Documentation:
+  Enabled: false
+
+#
+# Scripts might include on top-level
+#
+Style/MixinUsage:
+  Exclude:
+    - 'scripts/**/*'
+
+Style/RaiseArgs:
+  EnforcedStyle: compact
+
+#
+# Quick single line rescues in specs
+#
+Style/RescueModifier:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
+#
+# Quick single line rescues in specs
+#
+Style/RescueStandardError:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
+#
+# Often used pattern in chaining subjects in specs
+#
+Style/Semicolon:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
+Style/SignalException:
+  EnforcedStyle: only_raise
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
