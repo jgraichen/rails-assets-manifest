@@ -3,5 +3,4 @@
 require 'tempfile'
 
 RSpec.describe Rails::Assets::Manifest do
-
 end

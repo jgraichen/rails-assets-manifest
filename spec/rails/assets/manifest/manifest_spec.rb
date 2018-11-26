@@ -11,12 +11,12 @@ RSpec.describe Rails::Assets::Manifest::Manifest do
   after { tmpfile.unlink }
 
   describe '#lookup' do
+    subject(:entry) { manifest.lookup('app.js') }
+
     before do
       tmpfile.write JSON.dump('app.js': {src: 'app-digest.js'})
       tmpfile.flush
     end
-
-    subject(:entry) { manifest.lookup('app.js') }
 
     it 'returns manifest entry' do
       expect(entry).to be_a Rails::Assets::Manifest::Manifest::Entry
@@ -31,12 +31,12 @@ RSpec.describe Rails::Assets::Manifest::Manifest do
   end
 
   describe '#lookup!' do
+    subject(:entry) { manifest.lookup!('app.js') }
+
     before do
       tmpfile.write JSON.dump('app.js': {src: 'app-digest.js'})
       tmpfile.flush
     end
-
-    subject(:entry) { manifest.lookup!('app.js') }
 
     it 'returns manifest entry' do
       expect(entry).to be_a Rails::Assets::Manifest::Manifest::Entry

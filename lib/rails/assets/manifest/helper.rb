@@ -2,7 +2,7 @@
 
 module Rails::Assets::Manifest
   module Helper
-    def compute_asset_path(name, **kwargs)
+    def compute_asset_path(name, **_kwargs)
       ::Rails::Assets::Manifest.lookup!(name).src
     end
 
@@ -31,7 +31,7 @@ module Rails::Assets::Manifest
     def compute_integrity?(option)
       return false unless secure_subresource_integrity_context?
 
-      return option || option.nil?
+      option || option.nil?
     end
 
     def with_integrity(sources, required, **kwargs)
@@ -49,7 +49,7 @@ module Rails::Assets::Manifest
     end
 
     def secure_subresource_integrity_context?
-      respond_to?(:request) && (self.request&.local? || self.request&.ssl?)
+      respond_to?(:request) && (request&.local? || request&.ssl?)
     end
 
     def path_with_extname(path, options)

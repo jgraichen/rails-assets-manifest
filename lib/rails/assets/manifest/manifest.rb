@@ -53,8 +53,7 @@ module Rails::Assets::Manifest
         elsif entry.is_a?(Hash)
           Entry.new(entry['src'], entry['integrity'])
         else
-          raise InvalidManifest, \
-            "Manifest contains invalid entry: #{entry.inspect}"
+          raise InvalidManifest.new("Manifest contains invalid entry: #{entry.inspect}")
         end
       end
     end

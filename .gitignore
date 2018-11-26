@@ -6,3 +6,5 @@
 /spec/examples.txt
 /tmp
 /vendor/bundle
+
+*.lock
