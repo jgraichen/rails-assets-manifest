@@ -12,6 +12,8 @@ module Rails
       require 'rails/assets/manifest/helper'
       require 'rails/assets/manifest/railtie' if defined?(Rails::Railtie)
 
+      class ManifestMissing < StandardError; end
+      class ManifestInvalid < StandardError; end
       class EntryMissing < StandardError; end
       class IntegrityMissing < StandardError; end
 
