@@ -22,9 +22,11 @@ module Rails
 
         def instance
           @instance ||= begin
+            config = Rails.application.config
+
             Manifest.new \
-              Rails.application.config.assets.manifest,
-              cache: false
+              path: config.assets.manifest,
+              cache: config.cache_classes
           end
         end
       end
