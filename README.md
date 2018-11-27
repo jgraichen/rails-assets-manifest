@@ -41,7 +41,19 @@ gem 'rails-assets-manifest'
 
 ## Usage
 
-TODO
+The manifest path can be configured e.g. in an environment:
+
+```ruby
+  config.assets.manifest = "public/.asset-manifest.json"
+```
+
+If `config.cache_classes` is set to `true` the manifest file be loaded once on boot and raise errors if missing or invalid.
+
+Assets included with `integrity: true` will raise an error if the integrity option is missing in the manifest.
+
+## TODO
+
+* Override/Join with `asset_host` URL?
 
 ## Contributing
 
