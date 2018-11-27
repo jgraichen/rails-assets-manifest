@@ -3,7 +3,7 @@
 require 'tempfile'
 
 RSpec.describe Rails::Assets::Manifest::Manifest do
-  subject(:manifest) { described_class.new(path) }
+  subject(:manifest) { described_class.new(path: path) }
 
   let(:tmpfile) { Tempfile.new 'manifest' }
   let(:path) { tmpfile.path }
