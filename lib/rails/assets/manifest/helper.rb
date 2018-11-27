@@ -13,7 +13,7 @@ module Rails::Assets::Manifest
     def javascript_include_tag(*sources, integrity: nil, **kwargs)
       return super(*sources, **kwargs) unless compute_integrity?(integrity)
 
-      with_integrity(sources, integrity, type: :javascript, **kwargs) do |source, options|
+      with_integrity(sources, integrity, :javascript, **kwargs) do |source, options|
         super(source, options)
       end
     end
@@ -21,7 +21,7 @@ module Rails::Assets::Manifest
     def stylesheet_link_tag(*sources, integrity: nil, **kwargs)
       return super(*sources, **kwargs) unless compute_integrity?(integrity)
 
-      with_integrity(sources, integrity, type: :stylesheet, **kwargs) do |source, options|
+      with_integrity(sources, integrity, :stylesheet, **kwargs) do |source, options|
         super(source, options)
       end
     end
@@ -34,9 +34,9 @@ module Rails::Assets::Manifest
       option || option.nil?
     end
 
-    def with_integrity(sources, required, **kwargs)
+    def with_integrity(sources, required, type, **kwargs)
       sources.map do |source|
-        integrity = asset_integrity(source, **kwargs)
+        integrity = asset_integrity(source, type: type, **kwargs)
 
         if required && !integrity
           raise IntegrityMissing.new <<~ERROR
