@@ -27,8 +27,8 @@ html
 ```
 
 ```html
-<link rel="stylesheet" media="all" href="2b16adf6f756625a0194.css" integrity="sha384-/oreyvcV6U6htGZD0fDWR8/Txezke8KhD0QNgHb660hSaW7M+ZzxxuB4Vo+PuAC9" type="stylesheet">
-<script src="2b16adf6f756625a0194.js" integrity="sha384-iJ55fQQApbQGxWEWSbWStBabi+yNGxZSQy/010+1Dhxl+rymyhGF4NtjUkOsYv7B" type="javascript"></script>
+<link rel="stylesheet" media="all" href="2b16adf6f756625a0194.css" integrity="sha384-/oreyvcV6U6htGZD0fDWR8/Txezke8KhD0QNgHb660hSaW7M+ZzxxuB4Vo+PuAC9">
+<script src="2b16adf6f756625a0194.js" integrity="sha384-iJ55fQQApbQGxWEWSbWStBabi+yNGxZSQy/010+1Dhxl+rymyhGF4NtjUkOsYv7B"></script>
 ```
 
 ## Installation
