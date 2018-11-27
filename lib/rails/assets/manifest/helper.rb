@@ -11,7 +11,7 @@ module Rails::Assets::Manifest
     end
 
     def javascript_include_tag(*sources, integrity: nil, **kwargs)
-      return super unless compute_integrity?(integrity)
+      return super(*sources, **kwargs) unless compute_integrity?(integrity)
 
       with_integrity(sources, integrity, type: :javascript, **kwargs) do |source, options|
         super(source, options)
@@ -19,7 +19,7 @@ module Rails::Assets::Manifest
     end
 
     def stylesheet_link_tag(*sources, integrity: nil, **kwargs)
-      return super unless compute_integrity?(**kwargs)
+      return super(*sources, **kwargs) unless compute_integrity?(integrity)
 
       with_integrity(sources, integrity, type: :stylesheet, **kwargs) do |source, options|
         super(source, options)
@@ -40,7 +40,7 @@ module Rails::Assets::Manifest
 
         if required && !integrity
           raise IntegrityMissing.new <<~ERROR
-            Subresource Integrity missing but required for #{source}
+            SRI missing for #{path_with_extname(source, kwargs)}
           ERROR
         end
 
