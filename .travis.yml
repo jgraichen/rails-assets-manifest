@@ -2,8 +2,8 @@ dist: xenial
 language: ruby
 cache: bundler
 rvm:
+  - 2.6.1
   - 2.5.3
-  - 2.3.8
 gemfile:
   - gemfiles/rails-5-2.gemfile
   - gemfiles/rails-master.gemfile
@@ -13,8 +13,5 @@ before_install:
 script:
   - bundle exec rspec spec
 jobs:
-  exclude:
-    - rvm: '2.3.8'
-      gemfile: gemfiles/rails-master.gemfile
   allow_failures:
     - gemfile: gemfiles/rails-master.gemfile

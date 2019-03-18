@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 
 # Load root Gemfile
-instance_eval Bundler.read_file 'Gemfile'
+eval_gemfile '../Gemfile'
 
 gem 'activesupport', '~> 4.2.0'
 gem 'railties', '~> 4.2.0'
