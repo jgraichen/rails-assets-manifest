@@ -4,8 +4,6 @@ module Rails::Assets::Manifest
   class Manifest
     attr_reader :path
 
-    Entry = Struct.new(:src, :integrity)
-
     def initialize(path:, cache: true)
       @path = path.to_s.freeze
       @cache = cache
