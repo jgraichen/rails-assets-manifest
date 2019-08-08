@@ -4,8 +4,8 @@ module Rails::Assets::Manifest
   class Manifest
     attr_reader :path
 
-    def initialize(path:, cache: true)
-      @path = path.to_s.freeze
+    def initialize(files:, cache: true)
+      @files = Array(files).flatten.each(&:freeze).freeze
       @cache = cache
 
       data if cache?
@@ -22,10 +22,14 @@ module Rails::Assets::Manifest
     def lookup!(name)
       lookup(name) || begin
         raise EntryMissing.new <<~ERROR
-          Can't find #{name} in #{path}. Your manifest contains:
+          Can't find #{name} in #{path}. Your manifests contain:
           #{JSON.pretty_generate(data.keys)}
         ERROR
       end
+    end
+
+    def key?(name)
+      data.key?(name.to_s)
     end
 
     private
@@ -44,14 +48,20 @@ module Rails::Assets::Manifest
       end
     end
 
+    def files
+      @files.map {|path| Dir.glob(path) }.flatten
+    end
+
     def load
-      JSON.parse(File.read(path)).transform_values do |entry|
-        if entry.is_a?(String)
-          Entry.new(entry, nil)
-        elsif entry.is_a?(Hash)
-          Entry.new(entry.fetch('src'), entry['integrity'])
-        else
-          raise "Invalid entry: #{entry.inspect}"
+      files.each_with_object({}) do |file, entries|
+        JSON.parse(File.read(file)).each_pair do |key, entry|
+          if entry.is_a?(String)
+            entries[key] = Entry.new(entry, nil)
+          elsif entry.is_a?(Hash) && entry.key?('src')
+            entries[key] = Entry.new(entry['src'], entry['integrity'])
+          else
+            raise "Invalid manifest entry: #{entry.inspect}"
+          end
         end
       end
     rescue Errno::ENOENT => e

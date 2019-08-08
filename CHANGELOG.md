@@ -9,12 +9,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+* Accept glob patterns for `manifests` option
 
 ### Changes
 
 ### Fixes
 
 ### Breaks
+* Change `manifest` configuration option into `manifests` to support multiple files
+* Change  configuration option into  to support multiple files
 
 
 ## 1.1.0 - (2019-08-08)

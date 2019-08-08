@@ -25,7 +25,7 @@ module Rails
             config = Rails.application.config
 
             Manifest.new \
-              path: config.assets.manifest,
+              files: config.assets.manifests,
               cache: config.cache_classes
           end
         end

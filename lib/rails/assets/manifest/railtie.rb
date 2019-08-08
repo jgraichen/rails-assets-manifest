@@ -10,8 +10,8 @@ module Rails
         # sprockets.
         config.assets ||= ::ActiveSupport::OrderedOptions.new
 
-        # Path where the manifest file is loaded from.
-        config.assets.manifest = 'public/assets/manifest.json'
+        # Path where the manifest files are loaded from.
+        config.assets.manifests = ['public/assets/manifest.json']
 
         # If set to true missing assets will not raise an
         # exception but are passed through to sprockets
