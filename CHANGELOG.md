@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 * Add passthrough option to load assets from other plugins (e.g. sprockets)
 
 ### Changes
+* Only default to add available integrity if asset is from the manifest
 
 ### Fixes
 

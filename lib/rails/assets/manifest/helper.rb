@@ -42,15 +42,34 @@ module Rails::Assets::Manifest
 
     def with_integrity(sources, required, type, **kwargs)
       sources.map do |source|
-        integrity = asset_integrity(source, type: type, **kwargs)
+        path = path_with_extname(source, type: type, **kwargs)
 
-        if required && !integrity
-          raise IntegrityMissing.new <<~ERROR
-            SRI missing for #{path_with_extname(source, kwargs)}
-          ERROR
+        # integrity hash passed directly
+        if required.is_a?(String)
+          next yield(source, integrity: required, **kwargs)
+
+        # Explicit passed `true` option
+        elsif required
+          integrity = asset_integrity(source, type: type, **kwargs)
+
+          if !integrity
+            raise IntegrityMissing.new "SRI missing for #{path}"
+          end
+
+          next yield(source, integrity: integrity, **kwargs)
+
+        # No integrity option passed or `nil` default from above
+        elsif required.nil?
+          entry = ::Rails::Assets::Manifest.lookup(path)
+
+          # Only if it is an asset from our manifest and there is an integrity
+          # we default to adding one
+          if(entry && entry.integrity)
+            next yield(source, integrity: entry.integrity, **kwargs)
+          end
         end
 
-        yield(source, integrity: integrity, **kwargs)
+        yield(source, **kwargs)
       end.join.html_safe
     end
 
