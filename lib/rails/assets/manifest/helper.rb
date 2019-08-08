@@ -4,10 +4,16 @@ module Rails::Assets::Manifest
   module Helper
     def compute_asset_path(name, **_kwargs)
       ::Rails::Assets::Manifest.lookup!(name).src
+    rescue EntryMissing => e
+      return super if Rails::Assets::Manifest.passthrough?
+      raise
     end
 
     def asset_integrity(name, **kwargs)
       ::Rails::Assets::Manifest.lookup!(path_with_extname(name, **kwargs)).integrity
+    rescue EntryMissing => e
+      return super if Rails::Assets::Manifest.passthrough?
+      raise
     end
 
     def javascript_include_tag(*sources, integrity: nil, **kwargs)

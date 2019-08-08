@@ -29,6 +29,10 @@ module Rails
               cache: config.cache_classes
           end
         end
+
+        def passthrough?
+          Rails.application.config.assets.passthrough
+        end
       end
     end
   end

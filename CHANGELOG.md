@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+* Add passthrough option to load assets from other plugins (e.g. sprockets)
 
 ### Changes
 

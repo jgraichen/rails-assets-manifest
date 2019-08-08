@@ -4,8 +4,19 @@ module Rails
   module Assets
     module Manifest
       class Railtie < ::Rails::Railtie
-        config.assets = ::ActiveSupport::OrderedOptions.new
+        # If this plugin is used with sprockets this option
+        # already exists and must not be overriden. Otherwise
+        # all sprockets default options are removed breaking
+        # sprockets.
+        config.assets ||= ::ActiveSupport::OrderedOptions.new
+
+        # Path where the manifest file is loaded from.
         config.assets.manifest = 'public/assets/manifest.json'
+
+        # If set to true missing assets will not raise an
+        # exception but are passed through to sprockets
+        # or rails own asset methods.
+        config.assets.passthrough = false
 
         config.after_initialize do |_|
           ActiveSupport.on_load(:action_view) do
