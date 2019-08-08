@@ -4,8 +4,8 @@ module Rails
   module Assets
     module Manifest
       module VERSION
-        MAJOR = 1
-        MINOR = 1
+        MAJOR = 2
+        MINOR = 0
         PATCH = 0
         STAGE = nil
 
