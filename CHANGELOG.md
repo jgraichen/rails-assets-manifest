@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Fix check if assets option node already exists
 
 ### Breaks
+
+
+## 2.0.1 - (2019-08-09)
+---
+
+### Fixes
+* Fix check if assets option node already exists
 
 
 ## 2.0.0 - (2019-08-08)
