@@ -9,15 +9,23 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+
+### Changes
+
+### Fixes
+
+### Breaks
+
+
+## 2.1.0 - (2019-09-11)
+---
+
+### New
 * Automatically add `crossorigin="anonymous"` for SRI resources
 * Separate manifest caching and eager loading
 
 ### Changes
 * Remove defunct onboot manifest validation (f3fe8f57)
-
-### Fixes
-
-### Breaks
 
 
 ## 2.0.1 - (2019-08-09)
