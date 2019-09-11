@@ -17,7 +17,7 @@ module Rails::Assets::Manifest
     end
 
     def javascript_include_tag(*sources, integrity: nil, **kwargs)
-      return super(*sources, **kwargs) unless compute_integrity?(integrity)
+      return super(*sources, **kwargs) unless manifest_use_integrity?(integrity)
 
       with_integrity(sources, integrity, :javascript, **kwargs) do |source, options|
         super(source, options)
@@ -25,7 +25,7 @@ module Rails::Assets::Manifest
     end
 
     def stylesheet_link_tag(*sources, integrity: nil, **kwargs)
-      return super(*sources, **kwargs) unless compute_integrity?(integrity)
+      return super(*sources, **kwargs) unless manifest_use_integrity?(integrity)
 
       with_integrity(sources, integrity, :stylesheet, **kwargs) do |source, options|
         super(source, options)
@@ -34,10 +34,15 @@ module Rails::Assets::Manifest
 
     private
 
-    def compute_integrity?(option)
-      return false unless secure_subresource_integrity_context?
+    def manifest_use_integrity?(option)
+      return false unless secure_request_context?
 
       option || option.nil?
+    end
+
+    # http://www.w3.org/TR/SRI/#non-secure-contexts-remain-non-secure
+    def secure_request_context?
+      respond_to?(:request) && self.request && (self.request.local? || self.request.ssl?)
     end
 
     def with_integrity(sources, required, type, **kwargs)
@@ -71,10 +76,6 @@ module Rails::Assets::Manifest
 
         yield(source, **kwargs)
       end.join.html_safe
-    end
-
-    def secure_subresource_integrity_context?
-      respond_to?(:request) && (request&.local? || request&.ssl?)
     end
 
     def path_with_extname(path, options)
