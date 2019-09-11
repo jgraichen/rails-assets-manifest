@@ -20,8 +20,10 @@ module Rails
       class << self
         delegate :lookup, :lookup!, to: :instance
 
-        def instance
-          @instance ||= begin
+        attr_reader :instance
+
+        def prepare!
+          @instance = begin
             config = Rails.application.config
 
             Manifest.new \

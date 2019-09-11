@@ -26,8 +26,8 @@ module Rails
           end
         end
 
-        initializer 'rails-assets-manifest' do |app|
-          ::Rails::Assets::Manifest.instance
+        config.to_prepare do
+          ::Rails::Assets::Manifest.prepare!
         end
       end
     end
