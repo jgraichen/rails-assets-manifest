@@ -27,25 +27,7 @@ module Rails
         end
 
         initializer 'rails-assets-manifest' do |app|
-          ::Rails::Assets::Manifest.instance if server?
-        end
-
-        private
-
-        def server?
-          !(console? || generator? || rake?)
-        end
-
-        def console?
-          defined?(Rails::Console)
-        end
-
-        def generator?
-          defined?(Rails::Generators)
-        end
-
-        def rake?
-          File.basename($0) == "rake"
+          ::Rails::Assets::Manifest.instance
         end
       end
     end

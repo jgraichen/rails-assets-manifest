@@ -47,7 +47,7 @@ The manifest path can be configured e.g. in an environment:
   config.assets.manifests = %w(public/.asset-manifest.json)
 ```
 
-If `config.cache_classes` is set to `true` the manifest file be loaded once on boot and raise errors if missing or invalid.
+If `config.cache_classes` is set to `true` the manifest file be loaded once on boot.
 
 Assets included with `integrity: true` will raise an error if the integrity option is missing in the manifest.
 
