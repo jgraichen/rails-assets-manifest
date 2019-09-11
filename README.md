@@ -17,7 +17,7 @@ This gem does not make any assumption on which tool to use to make your assets n
 }
 ```
 
-This gem does not add new helper methods but extends the existing helpers. SRI is automatically added if available and within a secure context:
+This gem does not add new helper methods but extends the existing helpers. SRI is automatically added if available and within a secure context. A `crossorigin="anonymous"` attribute is automatically added if non is present.
 
 ```slim
 html
@@ -27,8 +27,8 @@ html
 ```
 
 ```html
-<link rel="stylesheet" media="all" href="2b16adf6f756625a0194.css" integrity="sha384-/oreyvcV6U6htGZD0fDWR8/Txezke8KhD0QNgHb660hSaW7M+ZzxxuB4Vo+PuAC9">
-<script src="2b16adf6f756625a0194.js" integrity="sha384-iJ55fQQApbQGxWEWSbWStBabi+yNGxZSQy/010+1Dhxl+rymyhGF4NtjUkOsYv7B"></script>
+<link rel="stylesheet" media="all" href="2b16adf6f756625a0194.css" integrity="sha384-/oreyvcV6U6htGZD0fDWR8/Txezke8KhD0QNgHb660hSaW7M+ZzxxuB4Vo+PuAC9" crossorigin="anonymous">
+<script src="2b16adf6f756625a0194.js" integrity="sha384-iJ55fQQApbQGxWEWSbWStBabi+yNGxZSQy/010+1Dhxl+rymyhGF4NtjUkOsYv7B" crossorigin="anonymous"></script>
 ```
 
 ## Installation
