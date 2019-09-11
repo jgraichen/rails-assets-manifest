@@ -29,6 +29,10 @@ module Rails
         config.to_prepare do
           ::Rails::Assets::Manifest.prepare!
         end
+
+        config.before_eager_load do
+          ::Rails::Assets::Manifest.eager_load!
+        end
       end
     end
   end

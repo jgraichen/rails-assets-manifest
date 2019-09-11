@@ -32,6 +32,11 @@ module Rails
           end
         end
 
+        def eager_load!
+          return unless @instance
+          @instance.eager_load!
+        end
+
         def passthrough?
           Rails.application.config.assets.passthrough
         end

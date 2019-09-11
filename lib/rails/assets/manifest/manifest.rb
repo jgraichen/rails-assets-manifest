@@ -7,8 +7,6 @@ module Rails::Assets::Manifest
     def initialize(files:, cache: true)
       @files = Array(files).flatten.each(&:freeze).freeze
       @cache = cache
-
-      data if cache?
     end
 
     def cache?
@@ -30,6 +28,10 @@ module Rails::Assets::Manifest
 
     def key?(name)
       data.key?(name.to_s)
+    end
+
+    def eager_load!
+      data
     end
 
     private

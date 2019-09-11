@@ -4,10 +4,11 @@ require 'tempfile'
 require 'pathname'
 
 RSpec.describe Rails::Assets::Manifest::Manifest do
-  subject(:manifest) { described_class.new(files: tmp.join('*.json')) }
+  subject(:manifest) { described_class.new(files: files) }
 
   let(:tmp) { Pathname.new(Dir.mktmpdir('manifest')) }
   let(:tmpfile) { tmp.join('manifest.json').open('w') }
+  let(:files) { tmp.join('*.json') }
 
   after { tmp.rmtree }
 
@@ -32,9 +33,7 @@ RSpec.describe Rails::Assets::Manifest::Manifest do
     end
 
     context 'with multiple patterns/files' do
-      subject(:manifest) do
-        described_class.new(files: [tmp.join('manifest.json'), tmp.join('second*.json')])
-      end
+      let(:files) { [tmp.join('manifest.json'), tmp.join('second*.json')] }
 
       it 'includes entries from both files' do
         expect(manifest).to be_key 'app.js'
@@ -84,6 +83,29 @@ RSpec.describe Rails::Assets::Manifest::Manifest do
       subject(:entry) { manifest.lookup!('missing.js') }
 
       it { expect { entry }.to raise_error(::Rails::Assets::Manifest::EntryMissing) }
+    end
+  end
+
+  describe '#eager_load!' do
+    it 'does load data' do
+      expect(manifest).to receive(:data).and_call_original
+      manifest.eager_load!
+    end
+  end
+
+  describe '#data' do
+    it 'does call load on each invocation' do
+      expect(manifest).to receive(:load).twice.once.and_call_original
+      2.times { manifest.send(:data) }
+    end
+
+    context 'with caching enabled' do
+      subject(:manifest) { described_class.new(files: files, cache: true) }
+
+      it 'only call load once' do
+        expect(manifest).to receive(:load).once.and_call_original
+        2.times { manifest.send(:data) }
+      end
     end
   end
 end
