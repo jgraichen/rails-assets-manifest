@@ -5,5 +5,5 @@ source 'https://rubygems.org'
 # Load gem's dependencies
 gemspec
 
-gem 'rake', '~> 12.0'
+gem 'rake', '~> 13.0'
 gem 'rspec', '~> 3.0'
