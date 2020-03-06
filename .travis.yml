@@ -1,37 +1,24 @@
-dist: xenial
+dist: bionic
 language: ruby
 cache: bundler
 
 rvm:
-- 2.6.3
-- 2.5.5
+  - 2.7.0
+  - 2.6.5
+  - 2.5.7
 
 gemfile:
-- gemfiles/rails-5-2.gemfile
-- gemfiles/rails-master.gemfile
+  - gemfiles/rails-5.2.gemfile
+  - gemfiles/rails-6.0.gemfile
+  - gemfiles/rails-master.gemfile
 
 before_install:
-- gem update --system
-- gem install bundler
+  - gem update --system
+  - gem install bundler
 
 script:
-- bundle exec rspec spec
+  - bundle exec rspec spec
 
 jobs:
   allow_failures:
-  - gemfile: gemfiles/rails-master.gemfile
-
-  include:
-  - stage: Release
-    rvm: 2.6.3
-    env: []
-    script: skip
-    install: skip
-    deploy:
-      provider: rubygems
-      api_key:
-        secure: m5gUzb8J40lo4EJ2xE8XwoeHq4S3ZEDE+AyikDHzGKc5NEQQcCRoc469UlDO7fYfBHGKLh2eEe6+e/T+dyRE/C0qE/tfd6pVWf8xdyzt9+rB0zM3k7pR2Aud2hZ8NFF4bAQ28OvQ2y9pWWLVS9Bn/C0Xou951yZM+vufPVZpX7+08Aw+ZdPQrmg+v9SxsvWElm/is0CMjsHxpEy1vpyyBlF/DhNpHgd+69nupyTuZP8bg3lirZexek0xNaccNpflmrUeRwE7yofVGMfrRhvm5kOniYI+sQl/Zwru9+hK2WaSzfX/ou4ENihiLDGo5gdWeYcyLbS61yQARsRn21cN6SA0iYVuVnAruHC3uoxRh7ty1H8s3aUJnPTnnBj5cnfP9pqOyZI8zFi54CujkEFbRVLlWfGjKtCScgFBwkpXS5aB6CBplulMrX3kz/jYXFgodXLsV10WD725WGJ2Jkb52PoT5i2GyA/Ao746s7+wPIEV/l8NAurcroSHOzr9PcAUG/CwdzgidSnLfwl+qplMCGaUHtdHkPaRHqJL9j4BmcqoGVMaU0a4mAXsrlJG/drT2PMMrREKChtnQPtWg3L9HHDHBIKuXZCIQ7G9n2Dz7lpWnyKZKjJTcFyZWbbnKHLXlE1KDBUiG9qqrYbpky+IEPUt4jZ1W8hx4tKGjNlNwjU=
-      gem: rails-assets-manifest
-      on:
-        tags: true
-        repo: jgraichen/rails-assets-manifest
+    - gemfile: gemfiles/rails-master.gemfile
