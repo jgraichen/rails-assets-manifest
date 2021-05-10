@@ -1,0 +1,1 @@
+// sprockets javascript bundle

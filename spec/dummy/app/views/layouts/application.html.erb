@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dummy</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!-- assets from manifest plugin -->
+    <%= stylesheet_link_tag 'main', media: 'all', crossorigin: 'anonymous' %>
+    <%= javascript_include_tag 'main', async: true, crossorigin: 'anonymous' %>
+
+    <!-- assets from sprockets fallback -->
+    <%= stylesheet_link_tag 'application', media: 'all', crossorigin: 'anonymous' %>
+    <%= javascript_include_tag 'application', async: true, crossorigin: 'anonymous' %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

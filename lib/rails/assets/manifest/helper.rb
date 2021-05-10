@@ -83,7 +83,7 @@ module Rails::Assets::Manifest
         yield(source, **kwargs)
       end.join.html_safe
     end
-    # rubocop:enbale Style/IfUnlessModifier
+    # rubocop:enable Style/IfUnlessModifier
     # rubocop:enable Metrics/MethodLength
     # rubocop:enable Metrics/CyclomaticComplexity
     # rubocop:enable Metrics/AbcSize

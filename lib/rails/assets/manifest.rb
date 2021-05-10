@@ -30,7 +30,7 @@ module Rails
             config = Rails.application.config
 
             Manifest.new \
-              files: config.assets.manifests,
+              files: config.assets.manifests.map {|path| Rails.root.join(path) },
               cache: config.cache_classes
           end
         end
