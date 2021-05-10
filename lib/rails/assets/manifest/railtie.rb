@@ -8,9 +8,7 @@ module Rails
         # already exists and must not be overriden. Otherwise
         # all sprockets default options are removed breaking
         # sprockets.
-        unless config.respond_to?(:assets)
-          config.assets = ::ActiveSupport::OrderedOptions.new
-        end
+        config.assets = ::ActiveSupport::OrderedOptions.new unless config.respond_to?(:assets)
 
         # Path where the manifest files are loaded from.
         config.assets.manifests = ['public/assets/manifest.json']

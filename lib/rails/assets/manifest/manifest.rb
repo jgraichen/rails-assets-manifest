@@ -70,7 +70,7 @@ module Rails::Assets::Manifest
       raise ManifestMissing.new <<~ERROR
         Asset manifest does not exist: #{e}
       ERROR
-    rescue => e
+    rescue StandardError => e
       raise ManifestInvalid.new <<~ERROR
         Asset manifest could not be loaded: #{e}
       ERROR

@@ -43,7 +43,7 @@ RSpec.describe Rails::Assets::Manifest::Manifest do
   end
 
   context 'with invalid entry' do
-    let(:payload) { {'app.js': { nosrc: true }} }
+    let(:payload) { {'app.js': {nosrc: true}} }
     subject(:lookup) { manifest.lookup('app.js') }
 
     it 'raises an error' do

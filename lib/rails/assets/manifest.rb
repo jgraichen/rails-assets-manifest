@@ -13,8 +13,11 @@ module Rails
       require 'rails/assets/manifest/railtie' if defined?(Rails::Railtie)
 
       class ManifestMissing < StandardError; end
+
       class ManifestInvalid < StandardError; end
+
       class EntryMissing < StandardError; end
+
       class IntegrityMissing < StandardError; end
 
       class << self
@@ -34,6 +37,7 @@ module Rails
 
         def eager_load!
           return unless @instance
+
           @instance.eager_load!
         end
 
