@@ -20,6 +20,8 @@ jobs:
           - "5.2"
           - master
         exclude:
+          - ruby: "3.0"
+            rails: "5.2"
           - ruby: "2.6"
             rails: master
           - ruby: "2.5"
