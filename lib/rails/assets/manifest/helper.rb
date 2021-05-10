@@ -2,7 +2,7 @@
 
 module Rails::Assets::Manifest
   module Helper
-    def compute_asset_path(name, **_kwargs)
+    def compute_asset_path(name, _options)
       ::Rails::Assets::Manifest.lookup!(name).src
     rescue EntryMissing
       return super if Rails::Assets::Manifest.passthrough?
@@ -10,8 +10,8 @@ module Rails::Assets::Manifest
       raise
     end
 
-    def asset_integrity(name, **kwargs)
-      ::Rails::Assets::Manifest.lookup!(path_with_extname(name, **kwargs)).integrity
+    def asset_integrity(name, options)
+      ::Rails::Assets::Manifest.lookup!(path_with_extname(name, options)).integrity
     rescue EntryMissing
       return super if Rails::Assets::Manifest.passthrough?
 

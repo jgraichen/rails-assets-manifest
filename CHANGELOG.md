@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
+* Super method signature for keyword arguments
 
 ### Breaks
 
