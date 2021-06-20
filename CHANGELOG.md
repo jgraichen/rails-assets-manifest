@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Super method signature for keyword arguments
 
 ### Breaks
+
+
+## 2.1.1 - (2021-06-20)
+---
+
+### Fixes
+* Super method signature for keyword arguments
 
 
 ## 2.1.0 - (2019-09-11)
