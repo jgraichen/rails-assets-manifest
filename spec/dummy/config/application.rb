@@ -23,5 +23,8 @@ module Dummy
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.assets.passthrough = true
+
+    config.relative_url_root = '/relroot'
+    config.asset_host = 'cdn.example.org'
   end
 end

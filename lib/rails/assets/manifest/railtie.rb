@@ -5,7 +5,7 @@ module Rails
     module Manifest
       class Railtie < ::Rails::Railtie
         # If this plugin is used with sprockets this option
-        # already exists and must not be overriden. Otherwise
+        # already exists and must not be overridden. Otherwise
         # all sprockets default options are removed breaking
         # sprockets.
         config.assets = ::ActiveSupport::OrderedOptions.new unless config.respond_to?(:assets)
@@ -20,7 +20,7 @@ module Rails
 
         config.after_initialize do |_|
           ActiveSupport.on_load(:action_view) do
-            include Helper
+            prepend Helper
           end
         end
 
