@@ -6,7 +6,7 @@ module Rails
       module VERSION
         MAJOR = 2
         MINOR = 1
-        PATCH = 1
+        PATCH = 2
         STAGE = nil
 
         STRING = [MAJOR, MINOR, PATCH, STAGE].reject(&:nil?).join('.')

@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Return correct fully qualified URLs from manifest when relative URL host or asset host is configured
 
 ### Breaks
+
+
+## 2.1.2 - (2021-09-05)
+---
+
+### Fixes
+* Return correct fully qualified URLs from manifest when relative URL host or asset host is configured
 
 
 ## 2.1.1 - (2021-06-20)
