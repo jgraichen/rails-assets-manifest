@@ -7,12 +7,13 @@
     <%= csp_meta_tag %>
 
     <!-- assets from manifest plugin -->
-    <%= stylesheet_link_tag 'main', media: 'all', crossorigin: 'anonymous' %>
-    <%= javascript_include_tag 'main', async: true, crossorigin: 'anonymous' %>
+    <%= stylesheet_link_tag 'main', media: 'all', crossorigin: 'anonymous', id: 'test1' %>
+    <%= javascript_include_tag 'main', async: true, crossorigin: 'anonymous', id: 'test2' %>
+    <%= javascript_include_tag 'extra', async: true, crossorigin: 'anonymous', id: 'test3' %>
 
     <!-- assets from sprockets fallback -->
-    <%= stylesheet_link_tag 'application', media: 'all', crossorigin: 'anonymous' %>
-    <%= javascript_include_tag 'application', async: true, crossorigin: 'anonymous' %>
+    <%= stylesheet_link_tag 'application', media: 'all', crossorigin: 'anonymous', id: 'test4' %>
+    <%= javascript_include_tag 'application', async: true, crossorigin: 'anonymous', id: 'test5' %>
   </head>
 
   <body>
