@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+* Add support for Rails 7.0 and Ruby 3.1
 
 ### Changes
 
