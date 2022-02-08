@@ -7,6 +7,8 @@ gemspec
 
 gem 'rails', require: false
 gem 'sprockets-rails', require: false # not included by default in Rails 7+
+gem 'net-smtp', require: false # not bundled in Ruby 3.1+
+gem 'sqlite3', require: false
 
 gem 'rake', '~> 13.0'
 gem 'rspec', '~> 3.0'

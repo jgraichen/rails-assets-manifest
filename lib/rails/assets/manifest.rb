@@ -29,9 +29,10 @@ module Rails
           @instance = begin
             config = Rails.application.config
 
-            Manifest.new \
-              files: config.assets.manifests.map {|path| Rails.root.join(path) },
+            Manifest.new(
+              config.assets_manifest.path,
               cache: config.cache_classes
+            )
           end
         end
 
@@ -42,7 +43,7 @@ module Rails
         end
 
         def passthrough?
-          Rails.application.config.assets.passthrough
+          Rails.application.config.assets_manifest.passthrough
         end
       end
     end
