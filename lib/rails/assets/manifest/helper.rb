@@ -67,10 +67,6 @@ module Rails::Assets::Manifest
       respond_to?(:request) && request && (request.local? || request.ssl?)
     end
 
-    # rubocop:disable Metrics/AbcSize
-    # rubocop:disable Metrics/CyclomaticComplexity
-    # rubocop:disable Metrics/MethodLength
-    # rubocop:disable Style/IfUnlessModifier
     def with_integrity(sources, required, type, **kwargs)
       sources.map do |source|
         path = path_with_extname(source, type: type, **kwargs)
@@ -103,10 +99,6 @@ module Rails::Assets::Manifest
         yield(source, **kwargs)
       end.join.html_safe
     end
-    # rubocop:enable Style/IfUnlessModifier
-    # rubocop:enable Metrics/MethodLength
-    # rubocop:enable Metrics/CyclomaticComplexity
-    # rubocop:enable Metrics/AbcSize
 
     def path_with_extname(path, options)
       path = path.to_s

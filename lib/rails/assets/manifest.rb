@@ -31,7 +31,7 @@ module Rails
 
             Manifest.new(
               config.assets_manifest.path,
-              cache: config.cache_classes
+              cache: config.cache_classes,
             )
           end
         end

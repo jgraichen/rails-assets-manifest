@@ -7,22 +7,22 @@ RSpec.describe Rails::Assets::Manifest::Manifest do
   subject(:manifest) { described_class.new(file) }
 
   let(:tmp) { Pathname.new(Dir.mktmpdir('manifest')) }
+  let(:payload) do
+    {'app.js': 'app-digest.js'}
+  end
   let(:tmpfile) { tmp.join('manifest.json').open('w') }
   let(:file) { tmp.join('manifest.json') }
 
   after { tmp.rmtree }
-
-  let(:payload) do
-    {'app.js': 'app-digest.js'}
-  end
 
   before do
     tmp.join('manifest.json').open('w') {|f| f.write JSON.generate(payload) }
   end
 
   context 'with invalid entry' do
-    let(:payload) { {'app.js': {nosrc: true}} }
     subject(:lookup) { manifest.lookup('app.js') }
+
+    let(:payload) { {'app.js': {nosrc: true}} }
 
     it 'raises an error' do
       expect { lookup }.to raise_error(::Rails::Assets::Manifest::ManifestInvalid)
@@ -64,6 +64,8 @@ RSpec.describe Rails::Assets::Manifest::Manifest do
     end
   end
 
+  # rubocop:disable RSpec/SubjectStub
+  # rubocop:disable RSpec/MessageSpies
   describe '#eager_load!' do
     it 'does load data' do
       expect(manifest).to receive(:data).and_call_original
@@ -86,4 +88,6 @@ RSpec.describe Rails::Assets::Manifest::Manifest do
       end
     end
   end
+  # rubocop:enable RSpec/MessageSpies
+  # rubocop:enable RSpec/SubjectStub
 end
