@@ -4,8 +4,8 @@ module Rails::Assets::Manifest
   class Manifest
     attr_reader :path
 
-    def initialize(files:, cache: true)
-      @files = Array(files).flatten.each(&:freeze).freeze
+    def initialize(path, cache: true)
+      @path = Rails.root.join(path).to_s.freeze
       @cache = cache
     end
 
@@ -20,7 +20,7 @@ module Rails::Assets::Manifest
     def lookup!(name)
       lookup(name) || begin
         raise EntryMissing.new <<~ERROR
-          Can't find #{name} in #{path}. Your manifests contain:
+          Can't find #{name} in #{path}. Your manifest contain:
           #{JSON.pretty_generate(data.keys)}
         ERROR
       end
@@ -50,13 +50,9 @@ module Rails::Assets::Manifest
       end
     end
 
-    def files
-      @files.map {|path| Dir.glob(path) }.flatten
-    end
-
     def load
-      files.each_with_object({}) do |file, entries|
-        JSON.parse(File.read(file)).each_pair do |key, entry|
+      {}.tap do |entries|
+        JSON.parse(File.read(path)).each_pair do |key, entry|
           if entry.is_a?(String)
             entries[key] = Entry.new(entry, nil)
           elsif entry.is_a?(Hash) && entry.key?('src')

@@ -4,11 +4,11 @@ require 'tempfile'
 require 'pathname'
 
 RSpec.describe Rails::Assets::Manifest::Manifest do
-  subject(:manifest) { described_class.new(files: files) }
+  subject(:manifest) { described_class.new(file) }
 
   let(:tmp) { Pathname.new(Dir.mktmpdir('manifest')) }
   let(:tmpfile) { tmp.join('manifest.json').open('w') }
-  let(:files) { tmp.join('*.json') }
+  let(:file) { tmp.join('manifest.json') }
 
   after { tmp.rmtree }
 
@@ -18,28 +18,6 @@ RSpec.describe Rails::Assets::Manifest::Manifest do
 
   before do
     tmp.join('manifest.json').open('w') {|f| f.write JSON.generate(payload) }
-  end
-
-  context 'with multiple files in glob pattern' do
-    before do
-      tmp.join('second-manifest.json').open('w') do |file|
-        file.write JSON.generate('app2.js': 'app2-digest.js')
-      end
-    end
-
-    it 'includes entries from both files' do
-      expect(manifest).to be_key 'app.js'
-      expect(manifest).to be_key 'app2.js'
-    end
-
-    context 'with multiple patterns/files' do
-      let(:files) { [tmp.join('manifest.json'), tmp.join('second*.json')] }
-
-      it 'includes entries from both files' do
-        expect(manifest).to be_key 'app.js'
-        expect(manifest).to be_key 'app2.js'
-      end
-    end
   end
 
   context 'with invalid entry' do
@@ -100,7 +78,7 @@ RSpec.describe Rails::Assets::Manifest::Manifest do
     end
 
     context 'with caching enabled' do
-      subject(:manifest) { described_class.new(files: files, cache: true) }
+      subject(:manifest) { described_class.new(file, cache: true) }
 
       it 'only call load once' do
         expect(manifest).to receive(:load).once.and_call_original

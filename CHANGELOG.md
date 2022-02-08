@@ -17,6 +17,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Fixes
 
 ### Breaks
+* Only support single manifest source file and error if not found (#9)
+* Use `config.assets_manifest` as the config base to avoid conflicts in apps without sprockets (#9)
 * Drop support for Ruby <2.7
 
 
