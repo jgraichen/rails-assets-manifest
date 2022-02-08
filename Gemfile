@@ -13,11 +13,10 @@ gem 'sqlite3', require: false
 gem 'rake', '~> 13.0'
 gem 'rspec', '~> 3.0'
 gem 'rspec-rails', '~> 5.0'
-gem 'rubocop', '~> 1.14'
 
 gem 'pry'
+gem 'rubocop-config', github: 'jgraichen/rubocop-config', ref: 'v7', require: false
 
 group :development do
   gem 'appraisal'
-  gem 'rubocop-config', github: 'jgraichen/rubocop-config', ref: 'v7', require: false
 end
