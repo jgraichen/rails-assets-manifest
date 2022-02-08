@@ -9,12 +9,21 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
-* Test integration with a Rails application without sprockets
-* Add support for Rails 7.0 and Ruby 3.1
 
 ### Changes
 
 ### Fixes
+
+### Breaks
+
+
+## 3.0.0 - (2022-02-08)
+---
+
+### New
+* Test integration with a Rails application without sprockets
+* Add support for Rails 7.0 and Ruby 3.1
+
 
 ### Breaks
 * Default to `public/assets/assets-manifest.json` manifest path matching new default from `webpack-assets-manifest` plugin
