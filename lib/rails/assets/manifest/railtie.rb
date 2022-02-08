@@ -7,7 +7,7 @@ module Rails
         config.assets_manifest = ::ActiveSupport::OrderedOptions.new
 
         # Path where the manifest file is loaded from.
-        config.assets_manifest.path = 'public/assets/manifest.json'
+        config.assets_manifest.path = 'public/assets/assets-manifest.json'
 
         # If set to true missing assets will not raise an exception but are
         # passed through to sprockets or rails own asset methods.

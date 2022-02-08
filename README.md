@@ -52,6 +52,31 @@ The manifest path can be configured e.g. in an `environments/*.rb` file:
 
 If `config.cache_classes` is set to `true` the manifest file be loaded once on boot. Assets included with `integrity: true` will raise an error if the integrity option is missing in the manifest.
 
+## Webpack Assets Manifest Example
+
+The following snippet provides an example configuration for the[webpack-assets-manifest](https://github.com/webdeveric/webpack-assets-manifest) plugin to generating a compatible assets manifest file.
+
+```ts
+new WebpackAssetsManifest({
+  integrity: true,
+  integrityHashes: ["sha384"],
+  writeToDisk: true,
+  entrypoints: false,
+  entrypointsUseAssets: true,
+  publicPath,
+  // Ignore a source maps and compressed files.
+  customize(e) {
+    if (e.key.endsWith(".map") || e.key.endsWith(".gz")) {
+      return false;
+    }
+
+    return e;
+  },
+})
+```
+
+Specifying `writeToDisk: true` allows running the `webpack-dev-server` as proxy to the Rails application, and still generate correct assets links in Rails code. `rails-assets-manifest` defaults to using `public/assets/assets-manifest.json` as the manifest path.
+
 ## TODO
 
 * Override/Join with `asset_host` URL?
