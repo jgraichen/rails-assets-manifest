@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Fixes
 
 ### Breaks
+* Drop support for Ruby <2.7
 
 
 ## 2.1.2 - (2021-09-05)
