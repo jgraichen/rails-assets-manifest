@@ -6,6 +6,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'rails'
+gem 'sprockets-rails' # not included by default in Rails 7+
 
 gem 'rake', '~> 13.0'
 gem 'rspec', '~> 3.0'
