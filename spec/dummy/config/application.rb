@@ -4,7 +4,13 @@ require_relative 'boot'
 
 require 'rails'
 require 'action_controller/railtie'
-require 'sprockets/rails'
+
+if %w[0 off no false].include?(ENV['SPROCKETS'])
+  SPROCKETS = false
+else
+  require 'sprockets/rails'
+  SPROCKETS = true
+end
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

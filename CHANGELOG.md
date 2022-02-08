@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+* Test integration with a Rails application without sprockets
 * Add support for Rails 7.0 and Ruby 3.1
 
 ### Changes
