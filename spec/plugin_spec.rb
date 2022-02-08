@@ -20,17 +20,33 @@ RSpec.describe 'Plugin', type: :request do
     end
   end
 
-  it 'contains the passthrough resources from sprockets' do
-    doc.at('link#test4').tap do |node|
-      expect(node).to be_present
-      expect(node[:href]).to eq 'http://cdn.example.org/relroot/assets/application-6ac3c3354847833f406a96850b1712fa3588191cae65a9f68b1d4c7c2e960139.css'
-      expect(node[:integrity]).to be_blank
-    end
+  if SPROCKETS
+    it 'contains the passthrough resources from sprockets' do
+      doc.at('link#test4').tap do |node|
+        expect(node).to be_present
+        expect(node[:href]).to eq 'http://cdn.example.org/relroot/assets/application-6ac3c3354847833f406a96850b1712fa3588191cae65a9f68b1d4c7c2e960139.css'
+        expect(node[:integrity]).to be_blank
+      end
 
-    doc.at('script#test5').tap do |node|
-      expect(node).to be_present
-      expect(node[:src]).to eq 'http://cdn.example.org/relroot/assets/application-31d5c5a3accecb31cf2e14d71b9e2ff28609f3d45028700c7c4f067788b51d45.js'
-      expect(node[:integrity]).to be_blank
+      doc.at('script#test5').tap do |node|
+        expect(node).to be_present
+        expect(node[:src]).to eq 'http://cdn.example.org/relroot/assets/application-31d5c5a3accecb31cf2e14d71b9e2ff28609f3d45028700c7c4f067788b51d45.js'
+        expect(node[:integrity]).to be_blank
+      end
+    end
+  else
+    it 'contains the passthrough resources from static assets' do
+      doc.at('link#test4').tap do |node|
+        expect(node).to be_present
+        expect(node[:href]).to eq 'http://cdn.example.org/relroot/stylesheets/application.css'
+        expect(node[:integrity]).to be_blank
+      end
+
+      doc.at('script#test5').tap do |node|
+        expect(node).to be_present
+        expect(node[:src]).to eq 'http://cdn.example.org/relroot/javascripts/application.js'
+        expect(node[:integrity]).to be_blank
+      end
     end
   end
 

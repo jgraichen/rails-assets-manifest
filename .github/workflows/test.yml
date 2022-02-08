@@ -3,7 +3,7 @@ name: test
 on: push
 jobs:
   rspec:
-    name: "Ruby ${{ matrix.ruby }} / Rails ${{ matrix.rails }}"
+    name: "ruby:${{ matrix.ruby }} rails:${{ matrix.rails }} sprockets:${{ matrix.sprockets }}"
     runs-on: ubuntu-20.04
 
     strategy:
@@ -18,6 +18,9 @@ jobs:
           - "6.1"
           - "6.0"
           - "5.2"
+        sprockets:
+          - "on"
+          - "off"
         exclude:
           - ruby: "3.1"
             rails: "5.2"
@@ -29,6 +32,7 @@ jobs:
       BUNDLE_WITHOUT: development
       BUNDLE_JOBS: 4
       BUNDLE_RETRY: 3
+      SPROCKETS: ${{ matrix.sprockets }}
 
     steps:
       - uses: actions/checkout@master
