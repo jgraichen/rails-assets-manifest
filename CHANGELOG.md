@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ### Fixes
 
-- Active View: nil is not a valid asset source issue in production app
-
 ### Breaks
+
+## 3.0.1 - (2023-08-17)
+
+---
+
+### Fixes
+
+- Active View: nil is not a valid asset source issue in production app
 
 ## 3.0.0 - (2022-02-08)
 
