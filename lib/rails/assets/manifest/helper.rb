@@ -73,7 +73,7 @@ module Rails::Assets::Manifest
 
         # integrity hash passed directly
         if required.is_a?(String)
-          next yield(source, integrity: required, crossorigin: 'anonymous', **kwargs)
+          next yield(source, {integrity: required, crossorigin: 'anonymous', **kwargs})
         end
 
         # Explicit passed `true` option
@@ -82,7 +82,7 @@ module Rails::Assets::Manifest
 
           raise IntegrityMissing.new "SRI missing for #{path}" unless integrity
 
-          next yield(source, integrity: integrity, crossorigin: 'anonymous', **kwargs)
+          next yield(source, {integrity: integrity, crossorigin: 'anonymous', **kwargs})
         end
 
         # No integrity option passed or `nil` default from above
@@ -92,11 +92,11 @@ module Rails::Assets::Manifest
           # Only if it is an asset from our manifest and there is an integrity
           # we default to adding one
           if entry && entry.integrity
-            next yield(source, integrity: entry.integrity, crossorigin: 'anonymous', **kwargs)
+            next yield(source, {integrity: entry.integrity, crossorigin: 'anonymous', **kwargs})
           end
         end
 
-        yield(source, **kwargs)
+        yield(source, kwargs)
       end.join.html_safe
     end
 
