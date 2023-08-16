@@ -23,6 +23,8 @@ jobs:
           - ""
           - "no-sprockets"
         exclude:
+          - ruby: "3.2"
+            rails: "5.2"
           - ruby: "3.1"
             rails: "6.0"
           - ruby: "3.1"
