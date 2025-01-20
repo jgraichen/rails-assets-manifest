@@ -15,7 +15,7 @@ gem 'rspec', '~> 3.0'
 gem 'rspec-rails', '~> 6.0'
 
 gem 'pry'
-gem 'rubocop-config', github: 'jgraichen/rubocop-config', ref: 'v7', require: false
+gem 'rubocop-config', github: 'jgraichen/rubocop-config', ref: '9f3e5cd0e519811a7f615f265fca81a4f4e843b9', require: false
 
 group :development do
   gem 'appraisal'
