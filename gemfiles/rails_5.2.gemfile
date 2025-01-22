@@ -2,15 +2,15 @@
 
 source "https://rubygems.org"
 
+gem "net-smtp", require: false
 gem "rails", "~> 5.2.0"
 gem "sprockets-rails", require: false
-gem "net-smtp", require: false
-gem "sqlite3", require: false
+gem "sqlite3", "~> 1.4"
 gem "rake", "~> 13.0"
 gem "rspec", "~> 3.0"
-gem "rspec-rails", "~> 5.0"
-gem "rubocop", "~> 1.14"
+gem "rspec-rails", "~> 6.0"
 gem "pry"
+gem "rubocop-config", github: "jgraichen/rubocop-config", ref: "v7", require: false
 
 group :development do
   gem "appraisal"
