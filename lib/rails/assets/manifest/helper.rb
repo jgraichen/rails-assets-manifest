@@ -2,20 +2,22 @@
 
 module Rails::Assets::Manifest
   module Helper
-    URI_REGEXP = %r{^[-a-z]+://|^(?:cid|data):|^//}i.freeze
+    URI_REGEXP = %r{^[-a-z]+://|^(?:cid|data):|^//}i
 
     def path_to_asset(source, options)
       if (entry = ::Rails::Assets::Manifest.lookup(path_with_extname(source, options)))
-        # Directly return the entry src if it is a fully qualified URL. Otherwise,
-        # Rails will join the URL with `relative_url_root` and/or asset host.
+        # Directly return the entry src if it is a fully qualified URL.
+        # Otherwise, Rails will join the URL with `relative_url_root`
+        # and/or asset host.
         return entry.src if URI_REGEXP.match?(entry.src)
 
         if entry.src[0] == '/'
           # When the asset name starts with a slash, Rails will skip an
-          # additional lookup via `#compute_asset_path` and directly use the
-          # provided path. As we already have looked up the manifest entry here,
-          # we can pass the entry source, but only *if* it starts with a slash.
-          return super entry.src, options
+          # additional lookup via `#compute_asset_path` and directly use
+          # the provided path. As we already have looked up the manifest
+          # entry here, we can pass the entry source, but only *if* it
+          # starts with a slash.
+          return super(entry.src, options)
         end
       end
 
@@ -89,9 +91,9 @@ module Rails::Assets::Manifest
         if required.nil?
           entry = ::Rails::Assets::Manifest.lookup(path)
 
-          # Only if it is an asset from our manifest and there is an integrity
-          # we default to adding one
-          if entry && entry.integrity
+          # Only if it is an asset from our manifest and there is an
+          # integrity we default to adding one
+          if entry&.integrity
             next yield(source, {integrity: entry.integrity, crossorigin: 'anonymous', **kwargs})
           end
         end

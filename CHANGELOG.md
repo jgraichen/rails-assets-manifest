@@ -11,6 +11,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ### Changes
 
+- Change minimum Ruby to 3.1 and minimum Rails to 7.0 (non-EOL)
+
 ### Fixes
 
 ### Breaks

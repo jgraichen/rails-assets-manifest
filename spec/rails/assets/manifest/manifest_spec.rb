@@ -25,7 +25,7 @@ RSpec.describe Rails::Assets::Manifest::Manifest do
     let(:payload) { {'app.js': {nosrc: true}} }
 
     it 'raises an error' do
-      expect { lookup }.to raise_error(::Rails::Assets::Manifest::ManifestInvalid)
+      expect { lookup }.to raise_error(Rails::Assets::Manifest::ManifestInvalid)
     end
   end
 
@@ -40,7 +40,7 @@ RSpec.describe Rails::Assets::Manifest::Manifest do
     context 'with unknown name' do
       subject(:entry) { manifest.lookup('missing.js') }
 
-      it { is_expected.to be nil }
+      it { is_expected.to be_nil }
     end
   end
 
@@ -60,7 +60,7 @@ RSpec.describe Rails::Assets::Manifest::Manifest do
     context 'with unknown name' do
       subject(:entry) { manifest.lookup!('missing.js') }
 
-      it { expect { entry }.to raise_error(::Rails::Assets::Manifest::EntryMissing) }
+      it { expect { entry }.to raise_error(Rails::Assets::Manifest::EntryMissing) }
     end
   end
 
