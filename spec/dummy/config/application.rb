@@ -2,6 +2,9 @@
 
 require_relative 'boot'
 
+# Dependency not explicitly loaded by Rails in older versions:
+require 'logger'
+
 VARIANT = ENV['VARIANT'].to_s.split(',')
 
 if VARIANT.empty?
