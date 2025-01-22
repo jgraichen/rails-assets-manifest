@@ -1,6 +1,11 @@
 ---
 name: test
-on: push
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
 jobs:
   rspec:
     name: "ruby:${{ matrix.ruby }} rails:${{ matrix.rails }} ${{ matrix.variant }}"
