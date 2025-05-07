@@ -13,7 +13,7 @@ gem 'rake', '~> 13.0'
 gem 'rspec', '~> 3.0'
 gem 'rspec-rails'
 
-gem 'rubocop-config', github: 'jgraichen/rubocop-config', tag: 'v13', require: false
+gem 'rubocop-config', github: 'jgraichen/rubocop-config', tag: 'v14', require: false
 
 group :development do
   gem 'appraisal'
